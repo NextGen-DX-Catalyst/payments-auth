@@ -15,5 +15,5 @@ spec:
   lifecycle: production
   owner: payments
   definition:
-    $text: ./auth-payments.yaml
+    $yaml: ./auth-payments-oas.yaml
   visibility: public
