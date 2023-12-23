@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="payments-auth">
+  <DisplayName/>
+  <Description/>
+  <CreatedAt>1703181322486</CreatedAt>
+  <LastModifiedAt>1703181390096</LastModifiedAt>
+  <BasePaths>/auth</BasePaths>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>

@@ -1,0 +1,17 @@
+site_name: Auth API Documentation
+site_description: Documentation for the Auth API service
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - API Overview: 
+    - Introduction: docs/introduction.md
+    - Authentication: docs/authentication.md
+  - Changelog: changelog.md
+  - Contact: contact.md
+
+plugins:
+  - search
+  - techdocs-core
