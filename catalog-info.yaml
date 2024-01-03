@@ -5,7 +5,7 @@ metadata:
   description: Retrieve bank account information to set up electronic funds transfers, such as ACH payments in the US, EFT payments in Canada, BACS payments in the UK, and IBAN / SIC payments in the EU.
   title: Auth
   annotations:
-    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    github.com/project-slug: NextGen-DX-Catalyst/payments-auth
     backstage.io/techdocs-ref: dir:.
   links:
     - url: https://console.cloud.google.com/apigee/proxies/payments-auth/overview?project=api-sandbox-298216
