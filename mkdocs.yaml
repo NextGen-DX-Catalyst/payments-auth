@@ -13,5 +13,4 @@ nav:
   - Contact: contact.md
 
 plugins:
-  - search
   - techdocs-core

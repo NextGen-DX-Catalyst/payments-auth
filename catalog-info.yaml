@@ -1,19 +1,108 @@
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Component
 metadata:
-  name: Auth
+  name: auth
   description: Retrieve bank account information to set up electronic funds transfers, such as ACH payments in the US, EFT payments in Canada, BACS payments in the UK, and IBAN / SIC payments in the EU.
+  title: Auth
   annotations:
     github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
     backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://console.cloud.google.com/apigee/proxies/payments-auth/overview?project=api-sandbox-298216
+      title: Apigee Proxy
   tags:
     - ach
     - authentication
     - finance
 spec:
+  type: service
+  lifecycle: production
+  owner: payments
+  system: auth
+  dependsOn:
+    - component:default/currency-convert
+  providesApis:
+    - auth-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: auth-api
+  title: Auth API
+  description: Retrieves bank account information
+spec:
   type: openapi
   lifecycle: production
   owner: payments
-  definition:
-    $yaml: ./auth-payments-oas.yaml
-  visibility: public
+  system: auth
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Auth API
+      description: API for retrieving bank account information for ACH transactions using Plaid.
+      version: "1.0.0"
+      contact:
+        name: Payments Team
+        email: payments-team@yourcompany.com
+      license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+    servers:
+      - url: https://api.yourcompany.com
+        description: Production server
+
+    paths:
+      /auth/get:
+        x-plaid-business-unit-context: BUSINESS_UNIT_PLAID
+        post:
+          tags:
+            - plaid
+          summary: Retrieve auth data
+          externalDocs:
+            url: /api/products/auth/#authget
+          operationId: authGet
+          description: |-
+            The `/auth/get` endpoint returns the bank account and bank identification numbers...
+            # [Truncated for brevity, include your full description here]
+          responses:
+            "200":
+              description: success
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/AuthGetResponse'
+                  examples:
+                    example-1:
+                      value:
+                        accounts:
+                          - account_id: vzeNDwK7KQIm4yEog683uElbp9GRLEFXGK98D
+                            balances:
+                              available: 100
+                              current: 110
+                              limit: null
+                              # [Truncated for brevity, include your full example here]
+            default:
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/PlaidError'
+              description: Default error
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AuthGetRequest'
+
+    components:
+      schemas:
+        AuthGetResponse:
+          type: object
+          # Define the schema for AuthGetResponse
+        AuthGetRequest:
+          type: object
+          # Define the schema for AuthGetRequest
+        PlaidError:
+          type: object
+          # Define the schema for PlaidError
