@@ -1,6 +1,9 @@
 name: publish-techdocs
 run-name: ${{ github.actor }} is building and publishing techdocs
-on: [push]
+on: 
+  push:
+    path:
+      - docs
 jobs:
   publish-techdocs:
     runs-on: ubuntu-latest
