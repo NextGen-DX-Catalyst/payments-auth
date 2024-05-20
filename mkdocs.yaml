@@ -7,10 +7,9 @@ theme:
 nav:
   - Home: index.md
   - API Overview: 
-    - Introduction: docs/introduction.md
-    - Authentication: docs/authentication.md
+    - Authentication: overview/authentication.md
+    - Use Cases: overview/use-cases.md
   - Changelog: changelog.md
-  - Contact: contact.md
 
 plugins:
   - techdocs-core
