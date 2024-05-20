@@ -1,8 +1,9 @@
 name: publish-techdocs
 run-name: ${{ github.actor }} is building and publishing techdocs
-on: 
+on:
+  workflow_dispatch:
   push:
-    path:
+    paths:
       - docs
 jobs:
   publish-techdocs:
